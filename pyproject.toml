@@ -41,7 +41,7 @@ dynamic = ["version"]
 database-backup = "database_backup:main"
 
 [tool.setuptools.dynamic]
-version = {attr = "database_backup.__version__"}
+version = {attr = "db_backup.__version__"}
 
 [tool.setuptools.packages.find]
 where = ["src"]

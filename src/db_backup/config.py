@@ -11,12 +11,14 @@ from typing import Optional
 from pydantic import BaseModel
 from pydantic_settings import BaseSettings
 
+from db_backup.enum import LogLevel
+
 _LOG = logging.getLogger(__name__)
 
 # noinspection SpellCheckingInspection
 _DEFAULTS = {
     'default_keep': 7,
-    'log_level': "INFO",
+    'log_level': LogLevel.INFO,
     'log_format': '%(asctime)s %(message)s',
     'log_time': '%H:%M:%S',
     'config_path': '/etc/database-backup.toml'
@@ -34,6 +36,7 @@ class GeneralSettings(BaseModel):
 
     Args:
         backup_directory (str): The directory to store backups in.
+        debug_level (str): The log level to use.
         default_driver (str): The default driver to use.  Must have a corresponding driver defined.
         default_server (str): The default server to connect to.
         default_user (str): The default user to connect as.
@@ -42,6 +45,7 @@ class GeneralSettings(BaseModel):
         default_schedule (str): The default schedule to run backups on.
     """
     backup_directory: pathlib.Path = pathlib.Path('/var/local/backups')
+    debug_level: LogLevel = _DEFAULTS['log_level']
     default_driver: Optional[str] = 'postgres'
     default_server: Optional[str] = 'localhost'
     default_user: Optional[str] = None

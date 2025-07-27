@@ -38,7 +38,7 @@ dependencies = [
 dynamic = ["version"]
 
 [project.scripts]
-database-backup = "database_backup:main"
+db_backup = "db_backup.main:main"
 
 [tool.setuptools.dynamic]
 version = {attr = "db_backup.__version__"}
